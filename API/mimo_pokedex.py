@@ -9,5 +9,5 @@ if response.status_code == 200:
   pokemon_data = response.json()
   print(f"Name:{pokemon_data['name']}")
   print(f"ID:{pokemon_data['id']}")
-else
+else:
   print("Failed to retrieve data")
