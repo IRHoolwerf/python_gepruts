@@ -17,21 +17,26 @@ def get_pokemons():
     print("Failed to retrieve Pokemons")
 
 
-def get_pokemon(pokemon):
+def get_pokemon(pokemon_id_or_name: str):
   """
   Haal een specifieke Pokemon op uit de Mimo Pokedex API en print de naam en ID
 
   Args:
-      pokemon (str): Naam of ID van de Pokemon
+      pokemon_id_or_name (str): Naam of ID van de Pokemon
   """
-  response = requests.get(base_url+pokemon)
+  response = requests.get(base_url+pokemon_id_or_name)
   if response.status_code == 200: 
     print("Pokemon successfully retrieved")
     pokemon_data = response.json()
     print(f"Name:{pokemon_data['name']}")
     print(f"ID:{pokemon_data['id']}")
+    print("Abilities:")
+    for ability in pokemon_data['abilities']:
+      print(f"- {ability['ability']['name']}")
+    #print("Full data:")
+    #print(pokemon_data)
   else:
     print("Failed to retrieve Pokemon")
 
 #get_pokemons()
-get_pokemon("5")
+get_pokemon("eevee")
